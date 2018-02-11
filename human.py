@@ -8,7 +8,7 @@ human_background = {
     4: ("You murdered someone in cold blood. You start the game with 1 Corruption.", "None"),
     5: ("You caught and recovered from a terrible disease.", "None"),
     6: ("You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity.", "None"),
-    7: ("The faerie held you prisoner for {roll('1d20t')} years.", "roll('1d20t')"),
+    7: ("The faerie held you prisoner for {} years.", "roll('1d20t')"),
     8: ("You lost a loved one and their loss haunts you still.", "None"),
     9: ("You lost a finger, a few teeth, or an ear, or you gained a scar.", "None"),
     10: ("You earned a living working in your profession.", "None"),
@@ -36,7 +36,7 @@ human_personalities = [
     "You are cruel, wicked, and self-serving. You enjoy  making others suffer.",
     "You are erratic and unpredictable. You have a hard time keeping your word and tend toward capricious behavior.",
     "Might makes right. Obedience to authority is the highest ideal.",
-    "You look after yourself  rst and foremost. You’re not above double-crossing friends.",
+    "You look after yourself first and foremost. You’re not above double-crossing friends.",
     "You put your interests and those of your friends above all else.",
     "You help others because it’s the right thing to do.",
     "You try to do what you think is right, even if it breaks laws and social conventions.",
@@ -65,3 +65,12 @@ human_religions = [
 def roll_human_religion():
     dice_roll = roll('3d6t')
     return human_religions[bisect(human_religion_breakpoints, dice_roll)]
+
+
+def human():
+    print(roll_human_background())
+    print(roll_human_personality())
+    print(roll_human_religion())
+
+
+human()
