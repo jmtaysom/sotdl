@@ -64,10 +64,10 @@ def roll_human_religion(dice_roll):
     return human_religions[bisect(human_religion_breakpoints, dice_roll)]
 
 
-def human():
+def roll_human():
     print(roll_human_background(roll('1d20t')))
     print(roll_human_personality(roll('3d6t')))
     print(roll_human_religion(roll('3d6t')))
 
-
-human()
+if __name__ == '__main__':
+    roll_human()
