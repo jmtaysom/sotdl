@@ -64,10 +64,54 @@ def roll_human_religion(dice_roll):
     return human_religions[bisect(human_religion_breakpoints, dice_roll)]
 
 
+human_appearance_breakpoints = [4, 5, 7, 9, 13, 15, 17, 18]
+human_appearances = [
+    'You are hideous. You look like a monster. Children cry when they encounter you, the weak of heart faint when they '
+    'see you, and one person vomited after getting a good look at your face.',
+    'You are ugly, and people find your visage unpleasant thanks to a scar, wen, beetling brows, boils, piles, a '
+    'wandering or weeping eye, or something else of a similar magnitude.',
+    'Most consider you homely: not quite ugly, but a bit worse than plain.',
+    'You are plain and uninteresting to look upon. People notice you, but your appearance fails to make an impression.',
+    'You are perfectly average in appearance. You look like everyone else.',
+    'You have a physical quality that makes you attractive to others. You might have pretty eyes, lips, hair, shape, '
+    'or something else.',
+    'You have several attractive physical qualities that make you quite comely.',
+    'You are one of the great beauties in the land, an individual of almost unsurpassed form and appearance. People '
+    'notice you.',
+    'You put beautiful people to shame. You are so striking, heads turn to follow you wherever you go. People become '
+    'infatuated with you, stumbling over their words and feeling flustered when you show them attention. There’s a fine'
+    ' line between love and hate. Should you spurn the attentions of people you enamor, their affection might sour to '
+    'resentment and even hatred.',
+]
+
+
+def roll_human_appearance(dice_roll):
+    return human_appearances[bisect(human_appearance_breakpoints, dice_roll)]
+
+
+human_ages_breakpoints = [4, 8, 13, 16, 18]
+human_ages = [
+    ('You are a child, 11 years old or younger.', 'None'),
+    ('You are an adolescent, {} years old.', 'roll("1d6+11")'),
+    ('You are a young adult, {} years old.', 'roll("1d18+17")'),
+    ('You are a middle-aged adult, {} years old.', 'roll("1d20+35")'),
+    ('You are an older adult, {} years old.', 'roll("1d20+55")'),
+    ('You are a venerable adult, 76 years old or older.', 'None') 
+]
+
+
+def roll_human_age(dice_roll):
+    age, rand = human_ages[bisect(human_ages_breakpoints, dice_roll)]
+    return age.format(eval(rand))
+
+
 def roll_human():
     print(roll_human_background(roll('1d20t')))
     print(roll_human_personality(roll('3d6t')))
     print(roll_human_religion(roll('3d6t')))
+    print(roll_human_appearance(roll('3d6t')))
+    print(roll_human_age(roll('3d6t')))
+
 
 if __name__ == '__main__':
     roll_human()
