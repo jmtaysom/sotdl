@@ -25,9 +25,8 @@ human_background = {
 }
 
 
-def roll_human_background():
-    d20 = roll('1d20t')
-    background, rand = human_background[d20]
+def roll_human_background(dice_roll):
+    background, rand = human_background[dice_roll]
     return background.format(eval(rand))
 
 
@@ -46,8 +45,7 @@ human_personalities = [
 ]
 
 
-def roll_human_personality():
-    dice_roll = roll('3d6t')
+def roll_human_personality(dice_roll):
     return human_personalities[bisect(human_personality_breakpoints, dice_roll)]
 
 
@@ -62,15 +60,14 @@ human_religions = [
 ]
 
 
-def roll_human_religion():
-    dice_roll = roll('3d6t')
+def roll_human_religion(dice_roll):
     return human_religions[bisect(human_religion_breakpoints, dice_roll)]
 
 
 def human():
-    print(roll_human_background())
-    print(roll_human_personality())
-    print(roll_human_religion())
+    print(roll_human_background(roll('1d20t')))
+    print(roll_human_personality(roll('3d6t')))
+    print(roll_human_religion(roll('3d6t')))
 
 
 human()
