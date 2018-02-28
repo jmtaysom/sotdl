@@ -20,28 +20,28 @@ def test_roll_faun_age(test_input):
 
 @pytest.mark.parametrize("test_input", list(range(3, 19)))
 def test_roll_faun_build(test_input):
-    result = changeling.roll_faun_build(test_input)
+    result = faun.roll_faun_build(test_input)
     assert type(result) == str
     assert len(result) > 0
 
 
 @pytest.mark.parametrize("test_input", list(range(3, 19)))
 def test_roll_faun_appearance(test_input):
-    result = changeling.roll_faun_appearance(test_input)
+    result = faun.roll_faun_appearance(test_input)
     assert type(result) == str
     assert len(result) > 0
     
 
 @pytest.mark.parametrize("test_input", list(range(1, 21)))
 def test_roll_faun_background(test_input):
-    result = changeling.roll_faun_background(test_input)
+    result = faun.roll_faun_background(test_input)
     assert type(result) == str
     assert len(result) > 0
 
 
 @pytest.mark.parametrize("test_input", list(range(3, 19)))
 def test_roll_faun_personality(test_input):
-    result = changeling.roll_faun_personality(test_input)
+    result = faun.roll_faun_personality(test_input)
     assert type(result) == str
     assert len(result) > 0
 
