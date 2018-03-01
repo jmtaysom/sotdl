@@ -1,3 +1,4 @@
 from .human import *
+from .character import *
 
-__all__ = ['human', ]
+__all__ = ['human', 'character']
