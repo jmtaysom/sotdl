@@ -1,6 +1,11 @@
 from bisect import bisect
+from random import seed
 from dice import roll
 
+try:
+    from .character import Character
+except ModuleNotFoundError:
+    from character import Character
 
 age_breakpoints_dwarf = [4, 8, 13, 16, 18]
 ages_dwarf = [
@@ -75,7 +80,7 @@ def roll_dwarf_hatred(dice_roll):
 
 background_dwarf = {
     1: ('You sold your soul to a devil to gain wealth. The devil betrayed you and left you penniless. You start the '
-       'game with 1 Corruption.', 'None'),
+        'game with 1 Corruption.', 'None'),
     2: ('Your ancestors appeared to you in a vision and sent you to recover a fabled relic.', 'None'),
     3: ('You accidentally killed someone close to you.', 'None'),
     4: ('You stole gold from a rival clan and the theft shames you.', 'None'),
@@ -124,14 +129,30 @@ def roll_dwarf_personality(dice_roll):
     return personality_dwarf[bisect(personality_breakpoints_dwarf, dice_roll)]
 
 
-def roll_dwarf():
-    print(roll_dwarf_age(roll('3d6t')))
-    print(roll_dwarf_build(roll('3d6t')))
-    print(roll_dwarf_appearance(roll('3d6t')))
-    print(roll_dwarf_hatred(roll('1d10')))
-    print(roll_dwarf_background(roll('1d20')))
-    print(roll_dwarf_personality(roll('3d6t')))
+class Dwarf(Character):
+    def __init__(self, s=None):
+        if s:
+            seed(s)
+        self.ancestry = 'Dwarf'
+        self.age = roll_dwarf_age(roll('3d6t'))
+        self.build = roll_dwarf_build(roll('3d6t'))
+        self.appearance = roll_dwarf_appearance(roll('3d6t'))
+        self.hatred = roll_dwarf_hatred(roll('1d10t'))
+        self.background = roll_dwarf_background(roll('1d20t'))
+        self.personality = roll_dwarf_personality(roll('3d6t'))
+        super().__init__()
+
+    def __str__(self):
+        return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\nHatred: {self.hatred}\n"
+                f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
+                f"{self.professions[0]}\nSecond Profession: {self.professions[1]}")
+
+
+    def __repr__(self):
+        return f'Class: {self.ancestry}'
+
 
 
 if __name__ == '__main__':
-    roll_dwarf()
+    gimli = Dwarf('Gimli')
+    print(gimli)

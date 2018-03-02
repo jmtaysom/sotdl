@@ -1,3 +1,1 @@
-from .human import *
-
-__all__ = ['human', ]
+from .dwarf import Dwarf
