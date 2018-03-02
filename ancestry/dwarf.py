@@ -2,8 +2,10 @@ from bisect import bisect
 from random import seed
 from dice import roll
 
-from character import Character
-
+try:
+    from .character import Character
+except ModuleNotFoundError:
+    from character import Character
 
 age_breakpoints_dwarf = [4, 8, 13, 16, 18]
 ages_dwarf = [
@@ -131,18 +133,25 @@ class Dwarf(Character):
     def __init__(self, s=None):
         if s:
             seed(s)
-        super().__init__()
+        self.ancestry = 'Dwarf'
         self.age = roll_dwarf_age(roll('3d6t'))
         self.build = roll_dwarf_build(roll('3d6t'))
         self.appearance = roll_dwarf_appearance(roll('3d6t'))
         self.hatred = roll_dwarf_hatred(roll('1d10t'))
         self.background = roll_dwarf_background(roll('1d20t'))
         self.personality = roll_dwarf_personality(roll('3d6t'))
+        super().__init__()
 
     def __str__(self):
         return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\nHatred: {self.hatred}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
                 f"{self.professions[0]}\nSecond Profession: {self.professions[1]}")
+
+
+    def __repr__(self):
+        return f'Class: {self.ancestry}'
+
+
 
 if __name__ == '__main__':
     gimli = Dwarf('Gimli')

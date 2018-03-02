@@ -169,25 +169,26 @@ def roll_religious_profession(dice_roll):
     return f'You are a {religious_professions[bisect(religious_profession_breakpoints, dice_roll)]}'
 
 
-def roll_profession(dice_roll):
+def roll_profession(dice_roll_1, dice_roll_2):
     return {
-        1: roll_commmon_profession(roll('1d20t')),
-        2: roll_academic_profession(roll('1d20t')),
-        3: roll_criminal_profession(roll('1d20t')),
-        4: roll_martial_profession(roll('1d20t')),
-        5: roll_wilderness_profession(roll('1d20t')),
-        6: roll_religious_profession(roll('1d20t'))
-    }.get(dice_roll)
+        1: roll_commmon_profession(dice_roll_2),
+        2: roll_academic_profession(dice_roll_2),
+        3: roll_criminal_profession(dice_roll_2),
+        4: roll_martial_profession(dice_roll_2),
+        5: roll_wilderness_profession(dice_roll_2),
+        6: roll_religious_profession(dice_roll_2)
+    }.get(dice_roll_1)
 
 
 
 class Character:
     def __init__(self):
-        self.professions = [roll_profession(roll('1d6t')), roll_profession(roll('1d6t'))]
+        self.professions = [roll_profession(roll('1d6t'), roll('1d20t')), roll_profession(roll('1d6t'), roll('1d20t'))]
 
     def __repr__(self):
         return f'{self.professions[0]}\n{self.professions[1]}'
 
-if __name__ =='__main__':
+
+if __name__ == '__main__':
     npc = Character()
     print(npc)
