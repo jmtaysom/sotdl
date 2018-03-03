@@ -145,12 +145,12 @@ class Dwarf(Character):
     def __str__(self):
         return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\nHatred: {self.hatred}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
-                f"{self.professions[0]}\nSecond Profession: {self.professions[1]}")
+                f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
+                f"{self.intersting_thing}")
 
 
     def __repr__(self):
         return f'Class: {self.ancestry}'
-
 
 
 if __name__ == '__main__':

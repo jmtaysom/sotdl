@@ -4,6 +4,11 @@ from bisect import bisect
 
 from dice import roll
 
+try:
+    from .interesting_things import roll_interesting_thing
+except (ModuleNotFoundError, ImportError):
+    from interesting_things import roll_interesting_thing
+
 
 def get_seed():
     return random.randrange(maxsize)
@@ -180,13 +185,13 @@ def roll_profession(dice_roll_1, dice_roll_2):
     }.get(dice_roll_1)
 
 
-
 class Character:
     def __init__(self):
         self.professions = [roll_profession(roll('1d6t'), roll('1d20t')), roll_profession(roll('1d6t'), roll('1d20t'))]
+        self.intersting_thing = roll_interesting_thing(roll('1d6t'), roll('1d20t'))
 
     def __repr__(self):
-        return f'{self.professions[0]}\n{self.professions[1]}'
+        return f'{self.professions[0]}\n{self.professions[1]}\n{self.intersting_thing}'
 
 
 if __name__ == '__main__':
