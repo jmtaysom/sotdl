@@ -4,9 +4,14 @@ Created on Fri Mar  2 03:52:46 2018
 
 @author: Jonathan Tross
 """
-
-from bisect import bisect
 from dice import roll
+
+
+def teeth_ears_heads():
+    teeth = roll('3d6t')
+    ears = roll('1d6t')
+    heads = roll('1d6t')
+    return (teeth, ears, heads)
 
 
 interesting_things_table1 = {
@@ -31,13 +36,6 @@ interesting_things_table1 = {
     19: ("A phylactery that holds a scrap of paper on which is written a single word.",  'None'),
     20: ("A reputation for being a badass.",  'None'),
 }
-
-
-def roll_interesting_things_table1(dice_roll):
-    table1, rand = interesting_things_table1[dice_roll]
-    return table1.format(eval(rand))
-
-
 interesting_things_table2 = {
     1: ("A flute or set of panpipes, or other musical instrument.",  'None'),
     2: ("A reliquary containing a small bone.",  'None'),
@@ -60,20 +58,6 @@ interesting_things_table2 = {
     19: ("A silver engagement ring worth 1 ss.",  'None'),
     20: ("A brush, comb, or umbrella.",  'None'),
 }
-
-
-def roll_interesting_things_table2(dice_roll):
-    table2, rand = interesting_things_table2[dice_roll]
-    return table2.format(eval(rand))
-
-
-def teeth_ears_heads():
-    teeth = roll('3d6t')
-    ears = roll('1d6t')
-    heads= roll('1d6t')
-    return (teeth, ears, heads)
-
-
 interesting_things_table3 = {
     1: ("A bar of soap or a towel.",  'None'),
     2: ("One hundred feet of twine wrapped up in a ball.",  'None'),
@@ -81,7 +65,8 @@ interesting_things_table3 = {
     4: ("A small keg of beer.",  'None'),
     5: ("A brace of conies or pack filled with pots and pans.",  'None'),
     6: ("An arrow or bolt with a silvered head.",  'None'),
-    7: ("Half a treasure map, a map of a foreign land, or a large, blue map covered with circles with weird bits of writing between them.",  'None'),
+    7: ("Half a treasure map, a map of a foreign land, or a large, blue map covered with circles with weird bits of "
+        "writing between them.",  'None'),
     8: ("A weapon of the GM’s choice.",  'None'),
     9: ("A light or heavy shield with an unusual heraldic device.",  'None'),
     10: ("A fancy set of clothes bearing a curious stain.",  'None'),
@@ -91,21 +76,16 @@ interesting_things_table3 = {
     14: ("A music box that plays a sad, sad song when opened.",  'None'),
     15: ("A bag of 100 marbles.",  'None'),
     16: ("A glass jar filled with saliva, a sack filled with rotting chicken parts, or an unseemly scar.",  'None'),
-    17: ("A small bag containing {} teeth, a necklace of {} ears, or {} severed heads tied together by their hair.", teeth_ears_heads()),
+    17: ("A small bag containing {} teeth, a necklace of {} ears, or {} severed heads tied together by their hair.",
+         "teeth_ears_heads()"),
     18: ("A newborn baby that might or might not be yours.",  'None'),
     19: ("A box of six fine white candles.",  'None'),
     20: ("A small dog with a tendency toward viciousness.",  'None'),
 }
-
-
-def roll_interesting_things_table3(dice_roll):
-    table3, rand = interesting_things_table3[dice_roll]
-    return table3.format(*rand)
-
-
 interesting_things_table4 = {
     1: ("A glass jar holding a beetle covered in glowing spots (sheds light as a candle).",  'None'),
-    2: ("A pair of boots that grants you 1 boon on rolls to sneak or a gray cloak that grants you 1 boon on rolls to hide.",  'None'),
+    2: ("A pair of boots that grants you 1 boon on rolls to sneak or a gray cloak that grants you 1 boon on rolls to "
+        "hide.",  'None'),
     3: ("A glass jar containing a strange organ suspended in alcohol.",  'None'),
     4: ("A tiny glass cage.",  'None'),
     5: ("A box containing {} bottles of ink, each a different color.",  "roll('1d6t')"),
@@ -125,13 +105,6 @@ interesting_things_table4 = {
     19: ("A bottle labeled “Eye of Newt.”",  'None'),
     20: ("A bag of beans.",  'None'),
 }
-
-
-def roll_interesting_things_table4(dice_roll):
-    table4, rand = interesting_things_table4[dice_roll]
-    return table4.format(eval(rand))
-
-
 interesting_things_table5 = {
     1: ("A jar of grease or a bottle of glue.",  'None'),
     2: ("A glass globe filled with swirling mist.",  'None'),
@@ -143,7 +116,8 @@ interesting_things_table5 = {
     8: ("The true name of a very minor devil.",  'None'),
     9: ("An animated mouse skeleton.",  'None'),
     10: ("A weapon of the GM’s choice that always emits light in a 1-yard radius.",  'None'),
-    11: ("A pouch that holds {} pinches of dust that, when sprinkled over stone, causes up to a 1-yard cube of material to become soft clay.",  "roll('1d6+1')"),
+    11: ("A pouch that holds {} pinches of dust that, when sprinkled over stone, causes up to a 1-yard cube of material"
+         " to become soft clay.",  "roll('1d6+1')"),
     12: ("A jar of paint that refills itself once each day at dawn.",  'None'),
     13: ("A tiny metal ball that when released floats 1 inch above any solid surface.",  'None'),
     14: ("A pouch holding {} pinches of diamond dust.",  "roll('1d6+1')"),
@@ -154,13 +128,6 @@ interesting_things_table5 = {
     19: ("A piece of amber containing a human-faced fly.",  'None'),
     20: ("A lifetime of regrets.",  'None'),
 }
-
-
-def roll_interesting_things_table5(dice_roll):
-    table5, rand = interesting_things_table5[dice_roll]
-    return table5.format(eval(rand))
-
-
 interesting_things_table6 = {
     1: ("A reputation for being a skilled lover.",  'None'),
     2: ("A mummified halfling.",  'None'),
@@ -178,36 +145,30 @@ interesting_things_table6 = {
     14: ("A shadow you cast that never quite matches your movements.",  'None'),
     15: ("Fear and loathing.",  'None'),
     16: ("A fondness for the bottle.",  'None'),
-    17: ("A thin shirt of mail that counts as light armor and can be worn under normal clothing (functions as mail and is not cumulative with other armor).",  'None'),
+    17: ("A thin shirt of mail that counts as light armor and can be worn under normal clothing (functions as mail and"
+         " is not cumulative with other armor).",  'None'),
     18: ("A bizarre fetish.",  'None'),
     19: ("A demanding spouse.",  'None'),
     20: ("A terrible secret that you dare not reveal.",  'None'),
 }
-
-
-def roll_interesting_things_table6(dice_roll):
-    table6, rand = interesting_things_table6[dice_roll]
-    return table6.format(eval(rand))
-
-
 interesting_things_tables = {
-    1: print(roll_interesting_things_table1(roll('1d20t'))),
-    2: print(roll_interesting_things_table2(roll('1d20t'))),
-    3: print(roll_interesting_things_table3(roll('1d20t'))),
-    4: print(roll_interesting_things_table4(roll('1d20t'))),
-    5: print(roll_interesting_things_table5(roll('1d20t'))),
-    6: print(roll_interesting_things_table6(roll('1d20t'))),
+    1: interesting_things_table1,
+    2: interesting_things_table2,
+    3: interesting_things_table3,
+    4: interesting_things_table4,
+    5: interesting_things_table5,
+    6: interesting_things_table6,
 }
 
 
-def roll_interesting_things_tables(dice_roll):
-    tables, rand = interesting_things_tables[dice_roll]
-    return tables.format(*rand)
-
-
-def roll_interesting_things():
-     print(roll_interesting_things_tables(roll('1d6t'))),
+def roll_interesting_thing(dice_roll_1, dice_roll_2):
+    table = interesting_things_tables[dice_roll_1]
+    interesting_thing, rand = table[dice_roll_2]
+    try:
+        return interesting_thing.format(eval(rand))
+    except IndexError:
+        return interesting_thing.format(*(eval(rand)))
 
     
 if __name__ == '__main__':
-    roll_interesting_things()
+    print(roll_interesting_thing(roll('1d6t'), roll('1d20t')))
