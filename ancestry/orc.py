@@ -139,7 +139,7 @@ class Orc(Character):
         return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
                 f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
-                f"{self.intersting_thing}")
+                f"{self.intersting_thing}\nWealth: {self.wealth}")
 
     def __repr__(self):
         return f'Class: {self.ancestry}'

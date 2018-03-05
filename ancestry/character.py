@@ -185,13 +185,31 @@ def roll_profession(dice_roll_1, dice_roll_2):
     }.get(dice_roll_1)
 
 
+wealth_breakpoints = [5, 9, 14, 17, 18]
+wealth = [
+    'Destitute. You are penniless and live on the streets.',
+    'Poor. You live in squalid conditions and you’re never sure where you’re going to get your next meal.',
+    'Getting By. You earn enough to meet all your expenses.',
+    'Comfortable. You live well and make enough that you can save a little.',
+    'Wealthy. You live very well. You have nice clothes and fine accommodations, and you have probably not gone without'
+    ' for a long time.',
+    'Rich. You want for nothing. You likely come from a noble family, and you have servants and an estate, castle, or '
+    'house in the best part of town. Your fortunes earn you many friends and many enemies.'
+]
+
+
+def roll_wealth(dice_roll):
+    return wealth[bisect(wealth_breakpoints, dice_roll)]
+
+
 class Character:
     def __init__(self):
         self.professions = [roll_profession(roll('1d6t'), roll('1d20t')), roll_profession(roll('1d6t'), roll('1d20t'))]
         self.intersting_thing = roll_interesting_thing(roll('1d6t'), roll('1d20t'))
+        self.wealth = roll_wealth(roll('3d6t'))
 
     def __repr__(self):
-        return f'{self.professions[0]}\n{self.professions[1]}\n{self.intersting_thing}'
+        return f'{self.professions[0]}\n{self.professions[1]}\n{self.intersting_thing}\n{self.wealth}'
 
 
 if __name__ == '__main__':

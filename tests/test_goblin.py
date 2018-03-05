@@ -56,3 +56,5 @@ def test_goblin():
     assert warwick.professions[0] == 'You are a Thug'
     assert warwick.professions[1] == 'You are a Musician. Choose an instrument. Examples include percussion, string, and wind.'
     assert warwick.ancestry == 'Goblin'
+    assert warwick.wealth == 'Poor. You live in squalid conditions and you’re never sure where you’re going to get ' \
+                             'your next meal.'

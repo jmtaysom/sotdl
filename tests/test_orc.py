@@ -58,3 +58,5 @@ def test_orc():
     assert azog.professions[1] == 'You are a Initiate of the Old Faith. You have been initiated into the Old Faith.'
     assert azog.intersting_thing == 'A brace of conies or pack filled with pots and pans.'
     assert azog.ancestry == 'Orc'
+    assert azog.wealth == 'Poor. You live in squalid conditions and you’re never sure where you’re going to get your ' \
+                          'next meal.'
