@@ -45,15 +45,14 @@ def test_roll_goblin_odd_habbit(test_input):
     assert len(result) > 0
 
 
-# def test_goblin():
-#     gimli = goblin.goblin('Gimli')
-#     assert gimli.age == 'You are a young adult, 48 years old.'
-#     assert gimli.build == 'You are average in height and build.'
-#     assert gimli.appearance == 'You take better care of yourself than most goblins and keep your facial hair well ' \
-#                                'groomed.'
-#     assert gimli.hatred == 'You hate elves'
-#     assert gimli.background == 'You are the rightful heir to a stronghold overrun by the enemies of your people.'
-#     assert gimli.personality == 'Your honor is your life. You would never do anything to bring shame to your people.'
-#     assert gimli.professions[0] == 'You are a Pilgrim. You travel to sites deemed holy to members of your religion.'
-#     assert gimli.professions[1] == 'You are a Marine'
-#     assert gimli.ancestry == 'goblin'
+def test_goblin():
+    warwick = goblin.Goblin('Warwick')
+    assert warwick.age == 'You are an adolescent, 9 years old.'
+    assert warwick.build == 'You fall within the normal height and weight ranges for goblins.'
+    assert warwick.appearance == 'You have all the warts.'
+    assert warwick.odd_habit == 'You never bathe.'
+    assert warwick.background == 'You earned a living working in your profession.'
+    assert warwick.personality == 'You love playing tricks on other people and find their pain hilarious!'
+    assert warwick.professions[0] == 'You are a Thug'
+    assert warwick.professions[1] == 'You are a Musician. Choose an instrument. Examples include percussion, string, and wind.'
+    assert warwick.ancestry == 'Goblin'

@@ -1,5 +1,11 @@
 from bisect import bisect
+from random import seed
 from dice import roll
+
+try:
+    from .character import Character
+except ModuleNotFoundError:
+    from character import Character
 
 goblin_background = {
     1: ("You spent the last {} year(s) in a drunken stupor. you are not proud.", "roll('1d6t')"),
@@ -106,16 +112,19 @@ def roll_goblin_appearance(dice_roll):
 
 goblin_ages_breakpoints = [4, 8, 13, 16, 18]
 goblin_ages = [
-    'You are a child, 6 years old or younger.',
-    'You are an adolescent, 7 to 10 years old.',
-    'You are a young adult, 11 to 25 years old.',
-    'You are a middle-aged adult, 26 to 50 years old.',
-    'You are an older adult, 51 to 75 years old.',
-    'You are a venerable adult, 76 years old or older.'
+    ('You are a child, 6 years old or younger.', 'None'),
+    ('You are an adolescent, {} years old.', 'roll("1d4+6")'),
+    ('You are a young adult, {} years old.', 'roll("1d15+10")'),
+    ('You are a middle-aged adult, {} years old.', 'roll("1d25+25")'),
+    ('You are an older adult, {} years old.', 'roll("1d25+50")'),
+    ('You are a venerable adult, 76 years old or older.', 'None')
 ]
 
+
 def roll_goblin_age(dice_roll):
-    return goblin_ages[bisect(goblin_ages_breakpoints, dice_roll)]
+    age, rand = goblin_ages[bisect(goblin_ages_breakpoints, dice_roll)]
+    return age.format(eval(rand))
+
 
 goblin_build_breakpoints = [4, 5, 7, 9, 13, 15, 17, 18]
 goblin_build = [
@@ -130,8 +139,10 @@ goblin_build = [
     'You are very tall and heavy.',
 ]
 
+
 def roll_goblin_build(dice_roll):
     return goblin_build[bisect(goblin_build_breakpoints, dice_roll)]
+
 
 def roll_goblin():
     print(roll_goblin_background(roll('1d20t')))
@@ -142,5 +153,29 @@ def roll_goblin():
     print(roll_goblin_age(roll('3d6t')))
 
 
+class Goblin(Character):
+    def __init__(self, s=None):
+        if s:
+            seed(s)
+        self.ancestry = 'Goblin'
+        self.age = roll_goblin_age(roll('3d6t'))
+        self.build = roll_goblin_build(roll('3d6t'))
+        self.appearance = roll_goblin_appearance(roll('3d6t'))
+        self.odd_habit = roll_goblin_odd_habit(roll('1d10t'))
+        self.background = roll_goblin_background(roll('1d20t'))
+        self.personality = roll_goblin_personality(roll('3d6t'))
+        super().__init__()
+
+    def __str__(self):
+        return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\nOdd Habit: {self.odd_habit}\n"
+                f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
+                f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
+                f"{self.intersting_thing}")
+
+    def __repr__(self):
+        return f'Class: {self.ancestry}'
+
+
 if __name__ == '__main__':
-    roll_goblin()
+    warwick = Goblin('Warwick')
+    print(warwick)
