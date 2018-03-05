@@ -48,7 +48,7 @@ def roll_goblin_personality(dice_roll):
     return goblin_personalities[bisect(goblin_personality_breakpoints, dice_roll)]
 
 
-goblin_odd_habit = [
+goblin_odd_habit = {
     1: "You save all your secretions in small bottles and give them as gifts to people you like.",
     2: "You never bathe.",
     3: "You punctuate your sentences by spitting.",
@@ -69,7 +69,7 @@ goblin_odd_habit = [
     18: "You keep a large collection of spoons.",
     19: "You like to hide.",
     20: "Make something up!",
-]
+}
 
 def roll_goblin_odd_habit(dice_roll):
     return goblin_odd_habit[dice_roll]
@@ -115,7 +115,7 @@ goblin_ages = [
 ]
 
 def roll_goblin_age(dice_roll):
-    return goblin_age[bisect(goblin_age_breakpoints, dice_roll)]
+    return goblin_ages[bisect(goblin_ages_breakpoints, dice_roll)]
 
 goblin_build_breakpoints = [4, 5, 7, 9, 13, 15, 17, 18]
 goblin_build = [
