@@ -1,5 +1,11 @@
 from bisect import bisect
+from random import seed
 from dice import roll
+
+try:
+    from .character import Character
+except ModuleNotFoundError:
+    from character import Character
 
 
 def orc_children():
@@ -15,8 +21,10 @@ def orc_children():
 orc_background = {
     1: ("You butchered helpless people. Gain 2 Corruption.", "(None, None)"),
     2: ("You were briefly possessed by a demon. Gain 1 Corruption.", "(None,  None)"),
-    3: ("You spent {} years in the fighting pit, testing your skills against other orcs for the amusement of the crowds.", "(roll('1d6t'), None)"),
-    4: ("You stayed loyal to the Empire and fought against other orcs. You were branded as a traitor and cast out.", "(None,  None)"),
+    3: ("You spent {} years in the fighting pit, testing your skills against other orcs for the amusement of the "
+        "crowds.", "(roll('1d6t'), None)"),
+    4: ("You stayed loyal to the Empire and fought against other orcs. You were branded as a traitor and cast out.",
+        "(None,  None)"),
     5: ("You caught the rot and lost your nose and ears.", "(None,  None)"),
     6: ("You were chained to the oars in a slave ship for {} years.", "(roll('1d6t'), None)"),
     7: ("You were made a eunuch and stood guard over the emperor’s concubines.", "(None,  None)"),
@@ -44,7 +52,8 @@ def roll_orc_background(dice_roll):
 orc_personality_breakpoints = [4, 5, 7, 9, 13, 15, 17, 18]
 orc_personalities = [
     "You fight to liberate your people from slavery.",
-    "Orcs are more than the killers the emperor made them to be. They are people, with hearts and souls, dreams and ambitions. You believe you must rise above the savagery and find your place.",
+    "Orcs are more than the killers the emperor made them to be. They are people, with hearts and souls, dreams and "
+    "ambitions. You believe you must rise above the savagery and find your place.",
     "The world is going to Hell. You say, let it.",
     "You take care of yourself, take what you want, and do what you want.",
     "Kill!",
@@ -79,13 +88,16 @@ def roll_orc_build(dice_roll):
 
 orc_appearance_breakpoints = [6, 9, 13, 16, 18]
 orc_appearances = [
-    'You are grotesque. Your face is a mass of scar tissue. Thick scars crisscross your body, held together with excrement, blood, and rot. '
+    'You are grotesque. Your face is a mass of scar tissue. Thick scars crisscross your body, held together with '
+    'excrement, blood, and rot. '
     'Swaths of open sores weep streams of pus, and you reek ofcrude, leather stitching.',
     'You are monstrous, with thick, brutish features, weird growths sprouting from your skin, '
     'and nasty scars that cut jagged lines across your thick hide.',
-    'You are ugly. You have thick tusks jutting from your broad jaw, a sloping forehead, and tiny eyes set deep in your skull.',
+    'You are ugly. You have thick tusks jutting from your broad jaw, a sloping forehead, and tiny eyes set deep in '
+    'your skull.',
     'You are an orc of typical appearance, dirty and unkempt.',
-    'Your features are somewhat less brutish, though you might have odd skin coloration, extra fur, and thick features.',
+    'Your features are somewhat less brutish, though you might have odd skin coloration, extra fur, and thick '
+    'features.',
     'You stand out from other orcs. Your body is remarkably free from the scars and injuries '
     'that maim your fellows, and you are in pretty good health.'
 ]
@@ -97,26 +109,42 @@ def roll_orc_appearance(dice_roll):
 
 orc_ages_breakpoints = [4, 8, 13, 16, 18]
 orc_ages = [
-    'You are a child, 8 years old or younger.',
-    'You are an adolescent, 8 to 12 years old.',
-    'You are a young adult, 13 to 18 years old.',
-    'You are a middle-aged adult, 19 to 26 years old.',
-    'You are an older adult, 27 to 32 years old.',
-    'You are a venerable adult, 33 years old or older.'
+    ('You are a child, 8 years old or younger.', 'None'),
+    ('You are an adolescent, {} years old.', 'roll("1d5+7")'),
+    ('You are a young adult, {} years old.', 'roll("1d6+12")'),
+    ('You are a middle-aged adult, {} years old.', 'roll("1d8+18")'),
+    ('You are an older adult, {} years old.', 'roll("1d6+26")'),
+    ('You are a venerable adult, 33 years old or older.', 'None'),
 ]
 
 
 def roll_orc_age(dice_roll):
-    return orc_ages[bisect(orc_ages_breakpoints, dice_roll)]
+    age, rand = orc_ages[bisect(orc_ages_breakpoints, dice_roll)]
+    return age.format(eval(rand))
 
 
-def roll_orc():
-    print(roll_orc_background(roll('1d20t')))
-    print(roll_orc_personality(roll('3d6t')))
-    print(roll_orc_build(roll('3d6t')))
-    print(roll_orc_appearance(roll('3d6t')))
-    print(roll_orc_age(roll('3d6t')))
+class Orc(Character):
+    def __init__(self, s=None):
+        if s:
+            seed(s)
+        self.ancestry = 'Orc'
+        self.age = roll_orc_age(roll('3d6t'))
+        self.build = roll_orc_build(roll('3d6t'))
+        self.appearance = roll_orc_appearance(roll('3d6t'))
+        self.background = roll_orc_background(roll('1d20t'))
+        self.personality = roll_orc_personality(roll('3d6t'))
+        super().__init__()
+
+    def __str__(self):
+        return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\n"
+                f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
+                f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
+                f"{self.intersting_thing}")
+
+    def __repr__(self):
+        return f'Class: {self.ancestry}'
 
 
 if __name__ == '__main__':
-    roll_orc()
+    azog = Orc('Azog')
+    print(azog)

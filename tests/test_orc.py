@@ -45,15 +45,16 @@ def test_orc_children():
     assert result[0] >= result[1] >= 0
 
 
-# def test_orc():
-#     gimli = orc.orc('Gimli')
-#     assert gimli.age == 'You are a young adult, 48 years old.'
-#     assert gimli.build == 'You are average in height and build.'
-#     assert gimli.appearance == 'You take better care of yourself than most orcs and keep your facial hair well ' \
-#                                'groomed.'
-#     assert gimli.hatred == 'You hate elves'
-#     assert gimli.background == 'You are the rightful heir to a stronghold overrun by the enemies of your people.'
-#     assert gimli.personality == 'Your honor is your life. You would never do anything to bring shame to your people.'
-#     assert gimli.professions[0] == 'You are a Pilgrim. You travel to sites deemed holy to members of your religion.'
-#     assert gimli.professions[1] == 'You are a Marine'
-#     assert gimli.ancestry == 'orc'
+def test_orc():
+    azog = orc.Orc('Azog')
+    assert azog.age == 'You are a young adult, 13 years old.'
+    assert azog.build == 'You are thin.'
+    assert azog.appearance == 'You are grotesque. Your face is a mass of scar tissue. Thick scars crisscross your ' \
+                              'body, held together with excrement, blood, and rot. Swaths of open sores weep streams ' \
+                              'of pus, and you reek ofcrude, leather stitching.'
+    assert azog.background == 'You received an education. You know how to read the Common Tongue.'
+    assert azog.personality == 'You never question orders. You always do as you’re commanded.'
+    assert azog.professions[0] == 'You are a Patroller'
+    assert azog.professions[1] == 'You are a Initiate of the Old Faith. You have been initiated into the Old Faith.'
+    assert azog.intersting_thing == 'A brace of conies or pack filled with pots and pans.'
+    assert azog.ancestry == 'Orc'
