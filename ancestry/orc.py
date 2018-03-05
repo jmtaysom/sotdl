@@ -1,33 +1,44 @@
 from bisect import bisect
 from dice import roll
 
+
+def orc_children():
+    born = roll('3d6t')
+    died = roll('3d6t')
+    if died > born:
+        living = 0
+    else:
+        living = born - died
+    return (born, living)
+
+
 orc_background = {
-    1: ("You butchered helpless people. Gain 2 Corruption.", "None"),
-    2: ("You were briefly possessed by a demon. Gain 1 Corruption.", "None"),
-    3: ("You spent {} years in the fighting pit, testing your skills against other orcs for the amusement of the crowds.", "roll('1d6t')"),
-    4: ("You stayed loyal to the Empire and fought against other orcs. You were branded as a traitor and cast out.", "None"),
-    5: ("You caught the rot and lost your nose and ears.", "None"),
-    6: ("You were chained to the oars in a slave ship for {} years.", "roll('1d6t')"),
-    7: ("You were made a eunuch and stood guard over the emperor’s concubines.", "None"),
-    8: ("You have scar tissue over half your body from when you were caught in the blast of a spell.", "None"),
-    9: ("You escaped your slavery and have lived in the wilderness ever since.", "None"),
-    10: ("You earned a living working in your profession.", "None"),
-    11: ("You fell in love with a human and were spurned for your affections.", "None"),
-    12: ("You sired or gave birth to {} children. {} are still alive.", "max([roll('1d6-2t'), 0])"),
-    13: ("You traveled extensively. You speak one additional language.", "None"),
-    14: ("You received an education. You know how to read the Common Tongue.", "None"),
-    15: ("You fought bravely for the Emperor and were awarded a medal for your courage.", "None"),
-    16: ("You saved an important noble from an assassination attempt.", "None"),
-    17: ("A human broke your chains and freed you to find your fortunes in the world.", "None"),
-    18: ("You took a sword from the corpse of a warrior you killed.", "None"),
-    19: ("The Gods of Blood and Iron visit you in your dreams. You start the game with 1 Insanity.", "None"),
-    20: ("You came into money and start the game with {} cp.", "roll('2d6t')"),
+    1: ("You butchered helpless people. Gain 2 Corruption.", "(None, None)"),
+    2: ("You were briefly possessed by a demon. Gain 1 Corruption.", "(None,  None)"),
+    3: ("You spent {} years in the fighting pit, testing your skills against other orcs for the amusement of the crowds.", "(roll('1d6t'), None)"),
+    4: ("You stayed loyal to the Empire and fought against other orcs. You were branded as a traitor and cast out.", "(None,  None)"),
+    5: ("You caught the rot and lost your nose and ears.", "(None,  None)"),
+    6: ("You were chained to the oars in a slave ship for {} years.", "(roll('1d6t'), None)"),
+    7: ("You were made a eunuch and stood guard over the emperor’s concubines.", "(None,  None)"),
+    8: ("You have scar tissue over half your body from when you were caught in the blast of a spell.", "(None,  None)"),
+    9: ("You escaped your slavery and have lived in the wilderness ever since.", "(None,  None)"),
+    10: ("You earned a living working in your profession.", "(None,  None)"),
+    11: ("You fell in love with a human and were spurned for your affections.", "(None,  None)"),
+    12: ("You sired or gave birth to {} children. {} are still alive.", "orc_children()"),
+    13: ("You traveled extensively. You speak one additional language.", "(None,  None)"),
+    14: ("You received an education. You know how to read the Common Tongue.", "(None,  None)"),
+    15: ("You fought bravely for the Emperor and were awarded a medal for your courage.", "(None,  None)"),
+    16: ("You saved an important noble from an assassination attempt.", "(None,  None)"),
+    17: ("A human broke your chains and freed you to find your fortunes in the world.", "(None,  None)"),
+    18: ("You took a sword from the corpse of a warrior you killed.", "(None,  None)"),
+    19: ("The Gods of Blood and Iron visit you in your dreams. You start the game with 1 Insanity.", "(None,  None)"),
+    20: ("You came into money and start the game with {} cp.", "(roll('2d6t'), None)"),
 }
 
 
 def roll_orc_background(dice_roll):
     background, rand = orc_background[dice_roll]
-    return background.format(eval(rand))
+    return background.format(*eval(rand))
 
 
 orc_personality_breakpoints = [4, 5, 7, 9, 13, 15, 17, 18]
@@ -96,7 +107,7 @@ orc_ages = [
 
 
 def roll_orc_age(dice_roll):
-    return orc_age[bisect(orc_age_breakpoints, dice_roll)]
+    return orc_ages[bisect(orc_ages_breakpoints, dice_roll)]
 
 
 def roll_orc():
