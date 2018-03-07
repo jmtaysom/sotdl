@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jmtaysom/sotdl.svg?branch=master)](https://travis-ci.org/jmtaysom/sotdl)
+
 ### Shadow of the Demon Lord Character Generator
 
 This is the very beginning of a character generator for the RPG game
