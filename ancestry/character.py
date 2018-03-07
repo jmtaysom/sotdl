@@ -4,10 +4,7 @@ from bisect import bisect
 
 from dice import roll
 
-try:
-    from .interesting_things import roll_interesting_thing
-except (ModuleNotFoundError, ImportError):
-    from interesting_things import roll_interesting_thing
+from ancestry.interesting_things import roll_interesting_thing
 
 
 def get_seed():

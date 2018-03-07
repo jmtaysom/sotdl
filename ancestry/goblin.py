@@ -2,14 +2,13 @@ from bisect import bisect
 from random import seed
 from dice import roll
 
-try:
-    from .character import Character
-except ModuleNotFoundError:
-    from character import Character
+from ancestry.character import Character
+
 
 goblin_background = {
     1: ("You spent the last {} year(s) in a drunken stupor. you are not proud.", "roll('1d6t')"),
-    2: ("The Goblin King turned you into a toad. You escaped that fate after you convinced an Elf maiden to kiss you. When she did and screamed, you killed her. You start the game with 1 Corruption.", "None"),
+    2: ("The Goblin King turned you into a toad. You escaped that fate after you convinced an Elf maiden to kiss "
+        "you. When she did and screamed, you killed her. You start the game with 1 Corruption.", "None"),
     3: ("You accidently got your entire tribe killed.", "None"),
     4: ("You were orphaned and raised by giant rats.", "None"),
     5: ("You accidentally released a demon into the world.", "None"),
@@ -44,7 +43,8 @@ goblin_personalities = [
     "You love playing tricks on other people and find their pain hilarious!",
     "You look out for yourself. To hell with everyone else!",
     "You’re just trying to stay alive!",
-    "Your people didn’t deserve exile, but exile you got. You believe you will make places for yourselves and prove to those stinking elves they were wrong.",
+    "Your people didn’t deserve exile, but exile you got. You believe you will make places for yourselves and prove "
+    "to those stinking elves they were wrong.",
     "You live to serve the strong and mighty.",
     "You hope to redeem your people in the eyes of the Faerie Queen."
 ]
@@ -76,6 +76,7 @@ goblin_odd_habit = {
     19: "You like to hide.",
     20: "Make something up!",
 }
+
 
 def roll_goblin_odd_habit(dice_roll):
     return goblin_odd_habit[dice_roll]

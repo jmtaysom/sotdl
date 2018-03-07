@@ -27,8 +27,10 @@ def test_roll_changeling_appearent_gender(test_input):
 @pytest.mark.parametrize("test_input", list(range(3, 19)))
 def test_roll_changeling_appearent_ancestry(test_input):
     result = changeling.roll_changeling_appearent_ancestry(test_input)
-    assert type(result) == str
-    assert len(result) > 0
+    assert type(result) == tuple
+    assert len(result) == 4
+    for apparent in result:
+        assert type(apparent) == str
     
 
 @pytest.mark.parametrize("test_input", list(range(1, 21)))

@@ -1,5 +1,8 @@
 from bisect import bisect
+from random import seed
 from dice import roll
+
+from ancestry.character import Character
 
 human_background = {
     1: ("You died and returned to life. You start the game with {} Insanity.", "roll('1d6t')"),
@@ -28,6 +31,24 @@ human_background = {
 def roll_human_background(dice_roll):
     background, rand = human_background[dice_roll]
     return background.format(eval(rand))
+
+
+human_build_breakpoints = [4, 5, 7, 9, 13, 15, 17, 18]
+human_build = [
+    'You are short and thin.',
+    'You are short and heavy.',
+    'You are short.',
+    'You are slender.',
+    'You are average in height and weight.',
+    'You are a bit overweight.',
+    'You are tall.',
+    'You are tall and thin.',
+    'You are very tall and heavy.',
+]
+
+
+def roll_human_build(dice_roll):
+    return human_build[bisect(human_build_breakpoints, dice_roll)]
 
 
 human_personality_breakpoints = [4, 5, 7, 9, 13, 15, 17, 18]
@@ -113,5 +134,30 @@ def roll_human():
     print(roll_human_age(roll('3d6t')))
 
 
+class Human(Character):
+    def __init__(self, s=None):
+        if s:
+            seed(s)
+        self.ancestry = 'Human'
+        self.age = roll_human_age(roll('3d6t'))
+        self.appearance = roll_human_appearance(roll('3d6t'))
+        self.religion = roll_human_religion(roll('3d6t'))
+        self.background = roll_human_background(roll('1d20t'))
+        self.personality = roll_human_personality(roll('3d6t'))
+        self.build = roll_human_build(roll('3d6t'))
+        super().__init__()
+
+    def __str__(self):
+        return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\nReligion: {self.religion}\n"
+                f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
+                f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
+                f"{self.intersting_thing}\nWealth: {self.wealth}")
+
+
+    def __repr__(self):
+        return f'Class: {self.ancestry}'
+
+
 if __name__ == '__main__':
-    roll_human()
+    john = Human('John')
+    print(john)

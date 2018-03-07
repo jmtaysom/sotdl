@@ -58,3 +58,4 @@ def test_dwarf():
     assert gimli.professions[1] == 'You are a Marine'
     assert gimli.ancestry == 'Dwarf'
     assert gimli.wealth == 'Getting By. You earn enough to meet all your expenses.'
+    assert gimli.intersting_thing == 'A small dog with a tendency toward viciousness.'

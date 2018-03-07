@@ -2,10 +2,8 @@ from bisect import bisect
 from random import seed
 from dice import roll
 
-try:
-    from .character import Character
-except ModuleNotFoundError:
-    from character import Character
+from ancestry.character import Character
+
 
 age_breakpoints_dwarf = [4, 8, 13, 16, 18]
 ages_dwarf = [

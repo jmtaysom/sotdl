@@ -2,10 +2,7 @@ from bisect import bisect
 from random import seed
 from dice import roll
 
-try:
-    from .character import Character
-except ModuleNotFoundError:
-    from character import Character
+from ancestry.character import Character
 
 
 def orc_children():
