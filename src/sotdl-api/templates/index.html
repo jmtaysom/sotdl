@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<body>
+    <p>
+        Here are the endpoints for creating a Shadow of the Demon Lord character. With any
+        of the ancestries you can add a name to the end of the URL to roll a character
+        with a permanent link.
+    </p>
+    <ul>
+        <li>GET <a href="{{ url_for('create_changeling') }}">/changeling</a></li>
+        <li>GET <a href="{{ url_for('create_changeling') }}">/changeling/{name}</a></li>
+        <li>GET <a href="{{ url_for('create_clockwork') }}">/clockwork</a></li>
+        <li>GET <a href="{{ url_for('create_clockwork') }}">/clockwork/{name}</a></li>
+        <li>GET <a href="{{ url_for('create_dwarf') }}">/dwarf</a></li>
+        <li>GET <a href="{{ url_for('create_dwarf') }}">/dwarf/{name}</a></li>
+        <li>GET <a href="{{ url_for('create_faun') }}">/faun</a></li>
+        <li>GET <a href="{{ url_for('create_faun') }}">/faun/{name}</a></li>
+        <li>GET <a href="{{ url_for('create_goblin') }}">/goblin</a></li>
+        <li>GET <a href="{{ url_for('create_goblin') }}">/goblin/{name}</a></li>
+        <li>GET <a href="{{ url_for('create_halfling') }}">/halfling</a></li>
+        <li>GET <a href="{{ url_for('create_halfling') }}">/halfling/{name}</a></li>
+        <li>GET <a href="{{ url_for('create_human') }}">/human</a></li>
+        <li>GET <a href="{{ url_for('create_human') }}">/human/{name}</a></li>
+        <li>GET <a href="{{ url_for('create_orc') }}">/orc</a></li>
+        <li>GET <a href="{{ url_for('create_orc') }}">/orc/{name}</a></li>
+    </ul>
+</body>
+</html>

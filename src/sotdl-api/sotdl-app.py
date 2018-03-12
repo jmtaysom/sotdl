@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from ancestry import (
     Changeling,
     Clockwork,
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template('index.html')
 
 
 @app.route('/changeling/', defaults={'name': None})
@@ -64,7 +64,6 @@ def create_human(name):
 @app.route('/orc/<name>')
 def create_orc(name):
     return jsonify(Orc(name).__dict__)
-
 
 
 if __name__ == '__main__':
