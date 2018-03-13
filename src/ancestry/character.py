@@ -202,11 +202,11 @@ def roll_wealth(dice_roll):
 class Character:
     def __init__(self):
         self.professions = [roll_profession(roll('1d6t'), roll('1d20t')), roll_profession(roll('1d6t'), roll('1d20t'))]
-        self.intersting_thing = roll_interesting_thing(roll('1d6t'), roll('1d20t'))
+        self.interesting_thing = roll_interesting_thing(roll('1d6t'), roll('1d20t'))
         self.wealth = roll_wealth(roll('3d6t'))
 
     def __repr__(self):
-        return f'{self.professions[0]}\n{self.professions[1]}\n{self.intersting_thing}\n{self.wealth}'
+        return f'{self.professions[0]}\n{self.professions[1]}\n{self.interesting_thing}\n{self.wealth}'
 
 
 if __name__ == '__main__':
