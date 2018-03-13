@@ -59,4 +59,4 @@ def test_faun():
     assert pan.professions[1] == 'You are a Guide'
     assert pan.ancestry == 'Faun'
     assert pan.wealth == 'Poor. You live in squalid conditions and you’re never sure where you’re going to get your next meal.'
-    assert pan.intersting_thing == 'A can of beets.'
+    assert pan.interesting_thing == 'A can of beets.'

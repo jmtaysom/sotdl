@@ -66,4 +66,4 @@ def test_clockwork():
     assert cogsworth.professions[1] == 'You are a Informant'
     assert cogsworth.ancestry == 'Clockwork'
     assert cogsworth.wealth == 'Getting By. You earn enough to meet all your expenses.'
-    assert cogsworth.intersting_thing == 'A fancy set of clothes bearing a curious stain.'
+    assert cogsworth.interesting_thing == 'A fancy set of clothes bearing a curious stain.'

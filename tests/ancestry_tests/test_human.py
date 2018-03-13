@@ -52,4 +52,4 @@ def test_human():
     assert john.professions[1] == 'You are a Patroller'
     assert john.ancestry == 'Human'
     assert john.wealth == 'Getting By. You earn enough to meet all your expenses.'
-    assert john.intersting_thing == 'A box containing 7 brushes.'
+    assert john.interesting_thing == 'A box containing 7 brushes.'

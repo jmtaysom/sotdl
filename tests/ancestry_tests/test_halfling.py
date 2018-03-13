@@ -66,4 +66,4 @@ def test_halfling():
     assert sam.ancestry == 'Halfling'
     assert sam.wealth == 'Poor. You live in squalid conditions and you’re never sure where you’re going to get your ' \
                          'next meal.'
-    assert sam.intersting_thing == 'A pet mouse, squirrel, or rabbit.'
+    assert sam.interesting_thing == 'A pet mouse, squirrel, or rabbit.'
