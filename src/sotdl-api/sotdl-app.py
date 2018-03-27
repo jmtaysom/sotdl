@@ -1,4 +1,7 @@
-from flask import Flask, jsonify, render_template
+"""HTTP API endpoint"""
+import random
+
+from flask import Flask, jsonify, redirect, render_template, url_for
 from ancestry import (
     Changeling,
     Clockwork,
@@ -17,6 +20,21 @@ app.config['JSON_AS_ASCII'] = False
 @app.route('/')
 def hello_world():
     return render_template('index.html')
+
+
+@app.route('/random/')
+def create_random():
+    """Get a random character"""
+    return redirect(url_for('create_{}'.format(random.choice((
+        'changeling',
+        'clockwork',
+        'dwarf',
+        'faun',
+        'goblin',
+        'halfling',
+        'human',
+        'orc',
+    )))))
 
 
 @app.route('/changeling/', defaults={'name': None})
