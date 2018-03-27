@@ -133,8 +133,7 @@ def roll_clockwork_personality(dice_roll):
 
 class Clockwork(Character):
     def __init__(self, s=None):
-        if s:
-            seed(s)
+        super().__init__(s)
         self.ancestry = 'Clockwork'
         self.age = roll_clockwork_age(roll('3d6t'))
         self.form = roll_clockwork_form(roll('3d6t'))
@@ -142,13 +141,12 @@ class Clockwork(Character):
         self.purpose = roll_clockwork_purpose(roll('1d20t'))
         self.background = roll_clockwork_background(roll('1d20t'))
         self.personality = roll_clockwork_personality(roll('3d6t'))
-        super().__init__()
 
     def __str__(self):
         return (f"Age: {self.age}\nForm: {self.form}\nAppearance: {self.appearance}\nPurpose: {self.purpose}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
                 f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
-                f"{self.intersting_thing}\nWealth: {self.wealth}")
+                f"{self.interesting_thing}\nWealth: {self.wealth}\n\nSeed: {self.seed}")
 
     def __repr__(self):
         return f'Class: {self.ancestry}'

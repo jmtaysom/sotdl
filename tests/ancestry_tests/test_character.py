@@ -8,3 +8,9 @@ def test_roll_profession(test_input):
     profession = character.roll_profession(*test_input)
     assert type(profession) == str
     assert len(profession) > 0
+
+def test_seed_permanence():
+    char1 = character.Character()
+    char2 = character.Character(char1.seed)
+    assert char1.seed == char2.seed
+    assert repr(char1) == repr(char2)

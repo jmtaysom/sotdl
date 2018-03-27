@@ -156,8 +156,7 @@ def roll_goblin():
 
 class Goblin(Character):
     def __init__(self, s=None):
-        if s:
-            seed(s)
+        super().__init__(s)
         self.ancestry = 'Goblin'
         self.age = roll_goblin_age(roll('3d6t'))
         self.build = roll_goblin_build(roll('3d6t'))
@@ -165,13 +164,12 @@ class Goblin(Character):
         self.odd_habit = roll_goblin_odd_habit(roll('1d10t'))
         self.background = roll_goblin_background(roll('1d20t'))
         self.personality = roll_goblin_personality(roll('3d6t'))
-        super().__init__()
 
     def __str__(self):
         return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\nOdd Habit: {self.odd_habit}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
                 f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
-                f"{self.intersting_thing}\nWealth: {self.wealth}")
+                f"{self.interesting_thing}\nWealth: {self.wealth}\n\nSeed: {self.seed}")
 
     def __repr__(self):
         return f'Class: {self.ancestry}'
