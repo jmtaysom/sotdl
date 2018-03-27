@@ -150,8 +150,7 @@ def roll_halfling():
 
 class Halfling(Character):
     def __init__(self, s=None):
-        if s:
-            seed(s)
+        super().__init__(s)
         self.ancestry = 'Halfling'
         self.age = roll_halfling_age(roll('3d6t'))
         self.build = roll_halfling_build(roll('3d6t'))
@@ -159,13 +158,12 @@ class Halfling(Character):
         self.religion = roll_halfling_religion(roll('1d20t'))
         self.background = roll_halfling_background(roll('1d20t'))
         self.personality = roll_halfling_personality(roll('3d6t'))
-        super().__init__()
 
     def __str__(self):
         return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\nReligion: {self.religion}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
                 f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
-                f"{self.intersting_thing}\nWealth: {self.wealth}")
+                f"{self.interesting_thing}\nWealth: {self.wealth}\n\nSeed: {self.seed}")
 
     def __repr__(self):
         return f'Class: {self.ancestry}'

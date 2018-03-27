@@ -106,21 +106,19 @@ def roll_faun_personality(dice_roll):
 
 class Faun(Character):
     def __init__(self, s=None):
-        if s:
-            seed(s)
+        super().__init__(s)
         self.ancestry = 'Faun'
         self.age = roll_faun_age(roll('3d6t'))
         self.build = roll_faun_build(roll('3d6t'))
         self.appearance = roll_faun_appearance(roll('3d6t'))
         self.background = roll_faun_background(roll('1d20t'))
         self.personality = roll_faun_personality(roll('3d6t'))
-        super().__init__()
 
     def __str__(self):
         return (f"Age: {self.age}\nBuild: {self.build}\nAppearance: {self.appearance}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
                 f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
-                f"{self.intersting_thing}\nWealth: {self.wealth}")
+                f"{self.interesting_thing}\nWealth: {self.wealth}\n\nSeed: {self.seed}")
 
 
     def __repr__(self):

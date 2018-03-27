@@ -200,7 +200,9 @@ def roll_wealth(dice_roll):
 
 
 class Character:
-    def __init__(self):
+    def __init__(self, s=None):
+        self.seed = s if s is not None else get_seed()
+        random.seed(self.seed)
         self.professions = [roll_profession(roll('1d6t'), roll('1d20t')), roll_profession(roll('1d6t'), roll('1d20t'))]
         self.interesting_thing = roll_interesting_thing(roll('1d6t'), roll('1d20t'))
         self.wealth = roll_wealth(roll('3d6t'))

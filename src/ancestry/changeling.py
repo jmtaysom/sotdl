@@ -6,7 +6,6 @@ Created on Sat Feb 17 09:45:03 2018
 """
 
 from bisect import bisect
-from random import seed
 from dice import roll
 
 from ancestry.character import Character
@@ -182,8 +181,7 @@ def roll_changeling_quirk(dice_roll):
 
 class Changeling(Character):
     def __init__(self, s=None):
-        if s:
-            seed(s)
+        super().__init__(s)
         self.ancestry = 'Changeling'
         self.true_age = roll_changeling_true_age(roll('3d6t'))
         self.apparent_gender = roll_changeling_appearent_gender(roll('1d10t'))
@@ -193,14 +191,13 @@ class Changeling(Character):
          self.apparent_age,
          self.apparent_appearance,
          self.apparent_build) = roll_changeling_appearent_ancestry(roll('3d6t'))
-        super().__init__()
 
     def __str__(self):
         return (f"Age: {self.true_age}\nApparent Ancestry: {self.apparent_ancestry}\nApparent Age: {self.apparent_age}"
                 f"\nApparent Appearance: {self.apparent_appearance}\nApparent Build: {self.apparent_build}\n"
                 f"Background: {self.background}\nPersonality: {self.personality}\nFirst profession: "
                 f"{self.professions[0]}\nSecond Profession: {self.professions[1]}\nInteresting Thing: "
-                f"{self.intersting_thing}\nWealth: {self.wealth}")
+                f"{self.interesting_thing}\nWealth: {self.wealth}\n\nSeed: {self.seed}")
 
     def __repr__(self):
         return f'Class: {self.ancestry}'
